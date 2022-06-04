@@ -14,25 +14,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 2, max = 255, message = "* Длина имени должна быть от 2 до 255 символов")
+    @Size(min = 2, max = 255, message = "Длина имени должна быть от 2 до 255 символов")
     private String name;
 
-    @NotNull(message = "* Укажите возраст")
-    @Min(value = 0, message = "* Возраст не может быть меньше 0")
-    @Max(value = 120, message = "* Возраст не может превышать 120")
+    @NotNull(message = "Укажите возраст")
+    @Min(value = 0, message = "Возраст не может быть меньше 0")
+    @Max(value = 120, message = "Возраст не может превышать 120")
     private Integer age;
 
-    @NotEmpty(message = "* Введите email")
-    @Email(message = "* Неправильный email-адрес")
+    @NotEmpty(message = "Введите email")
+    @Email(message = "Неправильный email-адрес")
     private String email;
 
-    @NotEmpty(message = "* Введите пароль")
+    @NotEmpty(message = "Введите пароль")
     private String password;
 
-    @NotNull(message = "* Назначьте роль")
+    @NotNull(message = "Назначьте роль")
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    @NotNull(message = "Не указан статус аккаунта")
     private boolean enabled;
 
     public User() {}

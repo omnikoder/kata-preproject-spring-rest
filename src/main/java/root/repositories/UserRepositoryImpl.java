@@ -92,7 +92,7 @@ public class UserRepositoryImpl implements UserRepository {
                     false,
                     null,
                     null,
-                    "* Пользователь с таким email уже зарегистрирован"
+                    "Пользователь с таким email уже зарегистрирован"
             ));
         }
     }
