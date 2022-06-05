@@ -7,8 +7,8 @@ public class ValidationErrorException extends RuntimeException {
     private final BindingResult bindingResult;
     private final String path;
 
-    public ValidationErrorException(String message, BindingResult bindingResult, String path) {
-        super(message);
+    public ValidationErrorException(BindingResult bindingResult, String path) {
+        super("Ошибка валидации данных пользователя");
         this.bindingResult = bindingResult;
         this.path = path;
     }

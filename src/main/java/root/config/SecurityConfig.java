@@ -28,7 +28,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                .antMatchers("/admin/**", "/api/**").hasRole(Role.ADMIN.name())
                 .antMatchers("/user").hasAuthority(Permission.READ.name())
                 .and()
 
