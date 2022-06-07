@@ -1,3 +1,5 @@
+import User from './User.js';
+
 export default class Modal {
 
     constructor(selector) {
@@ -9,21 +11,22 @@ export default class Modal {
         this.inputPassword = this.modal.querySelector('input[name="password"]');
         this.inputRole     = this.modal.querySelector('select[name="role"]');
         this.inputEnabled  = this.modal.querySelector('input[name="enabled"]');
-        this.buttonHide    = this.modal.querySelector('button[data-bs-dismiss]');;
+        this.buttonHide    = this.modal.querySelector('button[data-bs-dismiss]');
     }
 
     init(getUsers, sendRequest, renderUserTable) {
         this.modal.addEventListener('submit', async (event) => {
             event.preventDefault()
 
-            const response = await sendRequest(this.inputId.value, JSON.stringify({
-                name: this.inputName.value,
-                age: this.inputAge.value,
-                email: this.inputEmail.value,
-                password: this.inputPassword.value,
-                role: this.inputRole.value,
-                enabled: this.inputEnabled.checked
-            }));
+            const response = await sendRequest(this.inputId.value, new User(
+                this.inputId.value,
+                this.inputName.value,
+                this.inputAge.value,
+                this.inputEmail.value,
+                this.inputPassword.value,
+                this.inputRole.value,
+                this.inputEnabled.checked
+            ));
 
             if (response.ok) {
                 this.buttonHide.click();

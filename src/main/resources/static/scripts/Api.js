@@ -1,4 +1,4 @@
-export default class API {
+export default class Api {
 
     constructor(url) {
         this.url = url;
@@ -15,13 +15,23 @@ export default class API {
         return response.ok ? await response.json() : null;
     }
 
-    async updateUser(id, body) {
+    async createUser(user) {
+        return await fetch(this.url + '/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+    }
+
+    async updateUser(id, user) {
         return await fetch(this.url + '/users/' + id, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
-            body: body
+            body: JSON.stringify(user)
         });
     }
 

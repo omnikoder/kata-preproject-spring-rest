@@ -1,9 +1,11 @@
-import API from './api.js';
-import Modal from "./modal.js";
+import Api from './Api.js';
+import Modal from "./Modal.js";
+import FormNewUser from "./FormNewUser.js";
 
-let api = new API('http://localhost:8080/api');
+let api = new Api('http://localhost:8080/api');
 let modalEdit = new Modal('#modal-edit');
 let modalDelete = new Modal('#modal-delete');
+let formNewUser = new FormNewUser('#formNewUser');
 
 function renderUserTable(userList) {
     let body = document.querySelector('#user-table-body');
@@ -35,4 +37,5 @@ window.onload = async () => {
     renderUserTable(await api.getUsers());
     modalEdit.init(api.getUsers.bind(api), api.updateUser.bind(api), renderUserTable);
     modalDelete.init(api.getUsers.bind(api), api.deleteUser.bind(api), renderUserTable);
+    formNewUser.init(api.getUsers.bind(api), api.createUser.bind(api), renderUserTable);
 };

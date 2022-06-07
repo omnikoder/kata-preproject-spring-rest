@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:fragment="form-newuser" id="formNewUser" th:object="${newUser}" style="max-width: 320px;" class="m-auto">
+    <div id="alertNewUser"></div>
+    <div class="form-floating mb-3">
+        <input name="name" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+               type="text" class="form-control" id="newName" placeholder="Введите имя">
+        <label for="newName">Имя</label>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input name="age" th:classappend="${#fields.hasErrors('age') ? 'is-invalid' : ''}"
+               type="number" class="form-control" id="newAge" placeholder="0">
+        <label for="newAge">Возраст</label>
+        <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="invalid-feedback"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input name="email" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+               type="email" class="form-control" id="newEmail" placeholder="name@example.com">
+        <label for="newEmail">Почта</label>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input name="password" th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+               type="password" class="form-control" id="newPassword" placeholder="Password">
+        <label for="newPassword">Пароль</label>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></span>
+    </div>
+    <div class="form-floating mb-4">
+        <select name="role" th:classappend="${#fields.hasErrors('role') ? 'is-invalid' : ''}"
+                class="form-select" id="newRole" aria-label="Floating label select example">
+            <option selected></option>
+            <option th:each="role : ${roles}" th:value="${role.name()}" th:text="${role.name()}"></option>
+        </select>
+        <label for="newRole">Роль</label>
+        <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="invalid-feedback"></span>
+    </div>
+    <div class="form-check mb-5">
+        <input name="enabled" class="form-check-input" type="checkbox" id="newStatus">
+        <label class="form-check-label" for="newStatus">
+            Активировать
+        </label>
+    </div>
+    <button type="submit" class="w-100 btn btn-success">Добавить</button>
+</form>
+
+</body>
+</html>
