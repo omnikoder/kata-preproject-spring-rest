@@ -2,12 +2,12 @@ package root.exceptions;
 
 import org.springframework.validation.BindingResult;
 
-public class ValidationErrorException extends RuntimeException {
+public class ValidationException extends RuntimeException {
 
     private final BindingResult bindingResult;
     private final String path;
 
-    public ValidationErrorException(BindingResult bindingResult, String path) {
+    public ValidationException(BindingResult bindingResult, String path) {
         super("Ошибка валидации данных пользователя");
         this.bindingResult = bindingResult;
         this.path = path;

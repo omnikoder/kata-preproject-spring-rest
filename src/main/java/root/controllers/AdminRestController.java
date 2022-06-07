@@ -5,8 +5,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import root.entities.User;
-import root.exceptions.UserNotFoundErrorException;
-import root.exceptions.ValidationErrorException;
+import root.exceptions.UserNotFoundException;
+import root.exceptions.ValidationException;
 import root.services.UserService;
 
 import javax.servlet.ServletException;
@@ -37,7 +37,7 @@ public class AdminRestController {
     public User getUser(@PathVariable(name = "id") Long id, HttpServletRequest request) {
 
         return Optional.ofNullable(userService.getUserById(id))
-                .orElseThrow(() -> new UserNotFoundErrorException(id, request.getRequestURI()));
+                .orElseThrow(() -> new UserNotFoundException(id, request.getRequestURI()));
     }
 
     @PostMapping(path = "/users")
@@ -46,7 +46,7 @@ public class AdminRestController {
 
         userService.validateEmail(user.getEmail(), bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            throw new ValidationErrorException(bindingResult, request.getRequestURI());
+            throw new ValidationException(bindingResult, request.getRequestURI());
         }
         userService.save(user);
 
@@ -59,7 +59,7 @@ public class AdminRestController {
                          @RequestBody @Valid User user, BindingResult bindingResult) {
 
         User updatedUser = Optional.ofNullable(userService.getUserById(id))
-                .orElseThrow(() -> new UserNotFoundErrorException(id, request.getRequestURI()));
+                .orElseThrow(() -> new UserNotFoundException(id, request.getRequestURI()));
 
         user.setId(id);
 
@@ -69,7 +69,7 @@ public class AdminRestController {
         }
 
         if (bindingResult.hasFieldErrors()) {
-            throw new ValidationErrorException(bindingResult, request.getRequestURI());
+            throw new ValidationException(bindingResult, request.getRequestURI());
         }
 
         userService.update(user);
@@ -83,7 +83,7 @@ public class AdminRestController {
                            Authentication authentication) throws ServletException, IOException {
 
         if (userService.getUserById(id) == null) {
-            throw new UserNotFoundErrorException(id, request.getRequestURI());
+            throw new UserNotFoundException(id, request.getRequestURI());
         }
 
         if (authentication != null

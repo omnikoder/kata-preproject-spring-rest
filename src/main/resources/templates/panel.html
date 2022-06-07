@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/bootstrap-icons.css}">
     <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
     <script th:src="@{/bootstrap.bundle.min.js}" async></script>
-    <script type="module" sec:authorize="hasRole('ADMIN')" th:src="@{/admin.js}" async></script>
+    <script type="module" sec:authorize="hasRole('ADMIN')" th:src="@{/scripts/admin.js}" async></script>
 </head>
 <body class="vh-100 d-flex flex-column">
 
@@ -77,6 +77,7 @@
                         </tr>
                         </thead>
                         <tbody id="user-table-body">
+                        </tbody>
                         <template id="user-table-row-template">
                             <tr id="user-table-row">
                                 <th scope="row"></th>
@@ -86,20 +87,17 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <button id="user-table-btn-edit"
-                                            class="btn btn-success btn-sm"
-                                            data-bs-toggle="modal" type="button">
+                                    <button id="user-table-btn-edit" class="btn btn-success btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#modal-edit" type="button">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
-                                    <button id="user-table-btn-delete"
-                                            class="btn btn-danger btn-sm"
-                                            data-bs-toggle="modal" type="button">
+                                    <button id="user-table-btn-delete" class="btn btn-danger btn-sm"
+                                            data-bs-toggle="modal" data-bs-target="#modal-delete" type="button">
                                         <i class="bi bi-x-lg"></i>
                                     </button>
                                 </td>
                             </tr>
                         </template>
-                        </tbody>
                     </table>
                 </div>
 

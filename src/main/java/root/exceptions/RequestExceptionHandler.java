@@ -12,7 +12,7 @@ import java.util.Map;
 public class RequestExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity<UserNotFoundError> handleUserNotFoundException(UserNotFoundErrorException exception) {
+    public ResponseEntity<UserNotFoundError> handleUserNotFoundException(UserNotFoundException exception) {
 
         return new ResponseEntity<>(
                 new UserNotFoundError(exception.getUserId(), exception.getMessage(), exception.getPath()),
@@ -20,7 +20,7 @@ public class RequestExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<ValidationError> handleValidationErrorException(ValidationErrorException exception) {
+    public ResponseEntity<ValidationError> handleValidationErrorException(ValidationException exception) {
         Map<String, String> fieldErrors = new HashMap<>();
 
         exception.getBindingResult().getFieldErrors().forEach(fieldError ->
