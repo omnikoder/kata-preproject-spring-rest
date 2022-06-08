@@ -5,7 +5,7 @@ import FormNewUser from "./FormNewUser.js";
 let api = new Api('http://localhost:8080/api');
 let modalEdit = new Modal('#modal-edit');
 let modalDelete = new Modal('#modal-delete');
-let formNewUser = new FormNewUser('#formNewUser');
+let formNewUser = new FormNewUser('#formNewUser', 'is-invalid');
 
 function renderUserTable(userList) {
     let body = document.querySelector('#user-table-body');
