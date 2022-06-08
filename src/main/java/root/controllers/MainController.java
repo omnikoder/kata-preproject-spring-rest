@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import root.entities.Role;
-import root.entities.User;
 import root.services.UserService;
 
 import java.security.Principal;
@@ -36,11 +35,8 @@ public class MainController {
         return "home";
     }
 
-    @GetMapping(path = "/user")
-    public String getUserPage(Model model) {
-        model.addAttribute("users", userService.getUsers());
-        model.addAttribute("newUser", new User());
-        model.addAttribute("updatedUser", new User());
+    @GetMapping(path = {"/admin", "/user"})
+    public String getUserPage() {
         return "panel";
     }
 }

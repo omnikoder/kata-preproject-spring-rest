@@ -36,11 +36,17 @@ export default class Api {
     }
 
     async deleteUser(id) {
-        return await fetch(this.url + '/users/' + id, {
+        const response = await fetch(this.url + '/users/' + id, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
             }
         });
+
+        if (response.redirected) {
+            window.location.href = response.url;
+        }
+
+        return response;
     }
 }
