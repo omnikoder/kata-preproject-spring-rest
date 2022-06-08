@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -17,37 +16,45 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body px-5">
+                <div class="modal-alert"></div>
                 <div class="form-floating mb-3">
                     <input disabled name="id" id="idDelete" type="text" class="form-control" placeholder="ID">
                     <label for="idDelete">ID</label>
+                    <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-floating mb-3">
                     <input disabled name="name" id="nameDelete" type="text" class="form-control" placeholder="Введите имя">
                     <label for="nameDelete">Имя</label>
+                    <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-floating mb-3">
                     <input disabled name="age" id="ageDelete" type="number" class="form-control" placeholder="0">
                     <label for="ageDelete">Возраст</label>
+                    <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-floating mb-3">
                     <input disabled name="email" id="emailDelete" type="email" class="form-control" placeholder="name@example.com">
                     <label for="emailDelete">Почта</label>
+                    <span class="invalid-feedback"></span>
                 </div>
                 <div style="display: none;" class="form-floating mb-3">
                     <input name="password" id="passwordDelete" type="password" class="form-control" placeholder="Password">
                     <label for="passwordDelete">Пароль</label>
+                    <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-floating mb-4">
                     <select disabled name="role" id="roleDelete" class="form-select" aria-label="Floating label select example">
                         <option th:each="role : ${roles}" th:value="${role.name()}" th:text="${role.name()}"></option>
                     </select>
                     <label for="roleDelete">Роль</label>
+                    <span class="invalid-feedback"></span>
                 </div>
                 <div class="form-check mb-4">
                     <input disabled name="enabled" id="enabledDelete" class="form-check-input" type="checkbox">
                     <label for="enabledDelete" class="form-check-label">
                         Активный
                     </label>
+                    <span class="invalid-feedback"></span>
                 </div>
             </div>
             <div class="modal-footer">

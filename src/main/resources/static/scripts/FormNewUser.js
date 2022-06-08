@@ -69,11 +69,13 @@ export default class FormNewUser {
             }
             else {
                 const error = await response.json();
-                this.showAlert(error.message, 'danger')
-                Object.getOwnPropertyNames(this.fields).forEach(fieldName => {
-                    this.fields[fieldName].classList[error.fields[fieldName] ? 'add' : 'remove'](this.invalidFieldClass);
-                    this.feedbackFields[fieldName].textContent = error.fields[fieldName];
-                });
+                this.showAlert(error.message, 'danger');
+                if (error.fields) {
+                    Object.getOwnPropertyNames(this.fields).forEach(fieldName => {
+                        this.fields[fieldName].classList[error.fields[fieldName] ? 'add' : 'remove'](this.invalidFieldClass);
+                        this.feedbackFields[fieldName].textContent = error.fields[fieldName];
+                    });
+                }
             }
         })
     }

@@ -3,8 +3,8 @@ import Modal from "./Modal.js";
 import FormNewUser from "./FormNewUser.js";
 
 let api = new Api('http://localhost:8080/api');
-let modalEdit = new Modal('#modal-edit');
-let modalDelete = new Modal('#modal-delete');
+let modalEdit = new Modal('#modal-edit', 'is-invalid', 'Изменения успешно сохранены!');
+let modalDelete = new Modal('#modal-delete', 'is-invalid', 'Пользователь удален!');
 let formNewUser = new FormNewUser('#formNewUser', 'is-invalid');
 
 function renderUserTable(userList) {
