@@ -3,7 +3,7 @@ package root;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.test.annotation.Commit;
 import root.entities.Role;
 import root.entities.User;
 import root.repositories.UserRepository;
@@ -16,7 +16,7 @@ class ApplicationTests {
 	}
 
 	@Test
-	@Rollback
+	@Commit
 	void addAdmin(@Autowired UserRepository userRepository) {
 		User user = new User();
 		user.setName("Admin");
@@ -30,7 +30,7 @@ class ApplicationTests {
 	}
 
 	@Test
-	@Rollback
+	@Commit
 	void addUsers(@Autowired UserRepository userRepository) {
 		User user1 = new User();
 		user1.setName("User");
